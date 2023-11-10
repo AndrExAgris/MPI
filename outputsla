@@ -1,0 +1,40 @@
+Count Vector:
+MPI_Allgather: 0
+MPI_Allgatherv: 0
+MPI_Allreduce: 23
+MPI_Alltoall: 5
+MPI_Alltoallv: 1
+MPI_Alltoallw: 0
+MPI_Barrier: 21
+MPI_Bcast: 39
+MPI_Gather: 0
+MPI_Gatherv: 0
+MPI_Iallgather: 0
+MPI_Iallreduce: 0
+MPI_Ibarrier: 0
+MPI_Ibcast: 0
+MPI_Igather: 0
+MPI_Igatherv: 0
+MPI_Ireduce: 0
+MPI_Iscatter: 0
+MPI_Iscatterv: 0
+MPI_Reduce: 32
+MPI_Scatter: 0
+MPI_Scatterv: 0
+MPI_Exscan: 0
+MPI_Op_create: 0
+MPI_Op_free: 0
+MPI_Reduce_local: 0
+MPI_Reduce_scatter: 0
+MPI_Scan: 0
+MPI_User_function: 0
+    MPI_AllgatherMPI_AllgathervMPI_AllreduceMPI_AlltoallMPI_AlltoallvMPI_AlltoallwMPI_BarrierMPI_Bcast MPI_GatherMPI_GathervMPI_IallgatherMPI_IallreduceMPI_IbarrierMPI_IbcastMPI_IgatherMPI_IgathervMPI_IreduceMPI_IscatterMPI_IscattervMPI_ReduceMPI_ScatterMPI_ScattervMPI_ExscanMPI_Op_createMPI_Op_freeMPI_Reduce_localMPI_Reduce_scatterMPI_Scan  MPI_User_function
+BT   0         0         2         0         0         0         4         9         0         0         0         0         0         0         0         0         0         0         0         5         0         0         0         0         0         0         0         0         0         
+CG   0         0         1         0         0         0         1         1         0         0         0         0         0         0         0         0         0         0         0         4         0         0         0         0         0         0         0         0         0         
+DT   0         0         0         0         0         0         0         3         0         0         0         0         0         0         0         0         0         0         0         0         0         0         0         0         0         0         0         0         0         
+EP   0         0         4         0         0         0         1         1         0         0         0         0         0         0         0         0         0         0         0         3         0         0         0         0         0         0         0         0         0         
+FT   0         0         0         3         0         0         2         5         0         0         0         0         0         0         0         0         0         0         0         4         0         0         0         0         0         0         0         0         0         
+IS   0         0         2         2         1         0         0         2         0         0         0         0         0         0         0         0         0         0         0         8         0         0         0         0         0         0         0         0         0         
+LU   0         0         7         0         0         0         2         10        0         0         0         0         0         0         0         0         0         0         0         3         0         0         0         0         0         0         0         0         0         
+MG   0         0         6         0         0         0         9         7         0         0         0         0         0         0         0         0         0         0         0         4         0         0         0         0         0         0         0         0         0         
+SP   0         0         2         0         0         0         2         4         0         0         0         0         0         0         0         0         0         0         0         4         0         0         0         0         0         0         0         0         0         

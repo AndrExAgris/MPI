@@ -1,0 +1,536 @@
+clear/MG/Makefile:	${FLINK} ${FLINKFLAGS} -o ${PROGRAM} ${OBJS} ${FMPI_LIB}
+clear/MG/mg.f90:      call mpi_init(ierr)
+clear/MG/mg.f90:         dp_type = MPI_DOUBLE_PRECISION
+clear/MG/mg.f90:         dp_type = MPI_REAL
+clear/MG/mg.f90:         call mpi_abort(mpi_comm_world, 1, ierr)
+clear/MG/mg.f90:      call mpi_barrier(comm_work, ierr)
+clear/MG/mg.f90:      call mpi_bcast(lt, 1, MPI_INTEGER, 0, comm_work, ierr)
+clear/MG/mg.f90:      call mpi_bcast(nit, 1, MPI_INTEGER, 0, comm_work, ierr)
+clear/MG/mg.f90:      call mpi_bcast(nx(lt), 1, MPI_INTEGER, 0, comm_work, ierr)
+clear/MG/mg.f90:      call mpi_bcast(ny(lt), 1, MPI_INTEGER, 0, comm_work, ierr)
+clear/MG/mg.f90:      call mpi_bcast(nz(lt), 1, MPI_INTEGER, 0, comm_work, ierr)
+clear/MG/mg.f90:      call mpi_bcast(debug_vec(0), 8, MPI_INTEGER, 0,  &
+clear/MG/mg.f90:      call mpi_bcast(timeron, 1, MPI_LOGICAL, 0, comm_work, ierr)
+clear/MG/mg.f90:      call mpi_barrier(comm_work,ierr)
+clear/MG/mg.f90:      call mpi_reduce(t0,t,1,dp_type,  &
+clear/MG/mg.f90:     &     mpi_max,root,comm_work,ierr)
+clear/MG/mg.f90:      call MPI_Reduce(t1, tsum,  t_last+2, dp_type, MPI_SUM,  &
+clear/MG/mg.f90:      call MPI_Reduce(t1, tming, t_last+2, dp_type, MPI_MIN,  &
+clear/MG/mg.f90:      call MPI_Reduce(t1, tmaxg, t_last+2, dp_type, MPI_MAX,  &
+clear/MG/mg.f90:      call mpi_finalize(ierr)
+clear/MG/mg.f90:            call mpi_barrier(comm_work,ierr)
+clear/MG/mg.f90:            call mpi_barrier(comm_work,ierr)
+clear/MG/mg.f90:      call mpi_allreduce(rnmu,ss,1,dp_type,  &
+clear/MG/mg.f90:     &     mpi_max,comm_work,ierr)
+clear/MG/mg.f90:      call mpi_allreduce(s, ss, 1, dp_type,  &
+clear/MG/mg.f90:     &     mpi_sum,comm_work,ierr)
+clear/MG/mg.f90:      call mpi_irecv( buff(1,buff_id), buff_len,  &
+clear/MG/mg.f90:            call mpi_send(  &
+clear/MG/mg.f90:            call mpi_send(  &
+clear/MG/mg.f90:            call mpi_send(  &
+clear/MG/mg.f90:            call mpi_send(  &
+clear/MG/mg.f90:            call mpi_send(  &
+clear/MG/mg.f90:            call mpi_send(  &
+clear/MG/mg.f90:      integer status(mpi_status_size), ierr
+clear/MG/mg.f90:      call mpi_wait( msg_id( axis, dir, 1 ),status,ierr)
+clear/MG/mg.f90:            call mpi_send(  &
+clear/MG/mg.f90:            call mpi_send(  &
+clear/MG/mg.f90:            call mpi_send(  &
+clear/MG/mg.f90:            call mpi_send(  &
+clear/MG/mg.f90:            call mpi_send(  &
+clear/MG/mg.f90:            call mpi_send(  &
+clear/MG/mg.f90:      integer status(mpi_status_size) , ierr
+clear/MG/mg.f90:      call mpi_wait( msg_id( axis, dir, 1 ),status,ierr)
+clear/MG/mg.f90:      call mpi_barrier(comm_work,ierr)
+clear/MG/mg.f90:         call mpi_allreduce(best,temp,1,dp_type,  &
+clear/MG/mg.f90:     &        mpi_max,comm_work,ierr)
+clear/MG/mg.f90:         call mpi_allreduce(jg(0,i,1), jg_temp,4,MPI_INTEGER,  &
+clear/MG/mg.f90:     &        mpi_max,comm_work,ierr)
+clear/MG/mg.f90:         call mpi_allreduce(best,temp,1,dp_type,  &
+clear/MG/mg.f90:     &        mpi_min,comm_work,ierr)
+clear/MG/mg.f90:         call mpi_allreduce(jg(0,i,0), jg_temp,4,MPI_INTEGER,  &
+clear/MG/mg.f90:     &        mpi_max,comm_work,ierr)
+clear/MG/mg.f90:      call mpi_barrier(comm_work,ierr)
+clear/MG/mg.f90:         call mpi_barrier(comm_work,ierr)
+clear/MG/mg.f90:         call mpi_barrier(comm_work,ierr)
+clear/MG/mg.f90:         call mpi_barrier(comm_work,ierr)
+clear/MG/mg_data.f90:         call MPI_Abort(MPI_COMM_WORLD, MPI_ERR_OTHER, ierr)
+clear/LU/Makefile:	${FLINK} ${FLINKFLAGS} -o ${PROGRAM} ${OBJS} ${FMPI_LIB}
+clear/LU/lu_data_vec.f90:         call MPI_Abort(MPI_COMM_WORLD, MPI_ERR_OTHER, ierr)
+clear/LU/lu_data.f90:         call MPI_Abort(MPI_COMM_WORLD, MPI_ERR_OTHER, ierr)
+clear/LU/subdomain.f90:          CALL MPI_ABORT( MPI_COMM_WORLD,  &
+clear/LU/subdomain.f90:          CALL MPI_ABORT( MPI_COMM_WORLD,  &
+clear/LU/pintgr.f90:      call MPI_ALLREDUCE( dummy,  &
+clear/LU/pintgr.f90:     &                    MPI_SUM,  &
+clear/LU/pintgr.f90:      call MPI_ALLREDUCE( dummy,  &
+clear/LU/pintgr.f90:     &                    MPI_SUM,  &
+clear/LU/pintgr.f90:      call MPI_ALLREDUCE( dummy,  &
+clear/LU/pintgr.f90:     &                    MPI_SUM,  &
+clear/LU/lu.f90:      call MPI_Reduce(t1, tsum,  t_last+2, dp_type, MPI_SUM,  &
+clear/LU/lu.f90:      call MPI_Reduce(t1, tming, t_last+2, dp_type, MPI_MIN,  &
+clear/LU/lu.f90:      call MPI_Reduce(t1, tmaxg, t_last+2, dp_type, MPI_MAX,  &
+clear/LU/lu.f90:      call mpi_finalize(ierr)
+clear/LU/exchange_4.f90:      integer STATUS(MPI_STATUS_SIZE)
+clear/LU/exchange_4.f90:        call MPI_IRECV( dum,  &
+clear/LU/exchange_4.f90:        call MPI_WAIT( msgid3, STATUS, IERROR )
+clear/LU/exchange_4.f90:        call MPI_SEND( dum,  &
+clear/LU/exchange_4.f90:        call MPI_IRECV( dum,  &
+clear/LU/exchange_4.f90:        call MPI_WAIT( msgid1, STATUS, IERROR )
+clear/LU/exchange_4.f90:        call MPI_SEND( dum,  &
+clear/LU/bcast_inputs.f90:      call MPI_BCAST(ipr, 1, MPI_INTEGER, root, comm_solve, ierr)
+clear/LU/bcast_inputs.f90:      call MPI_BCAST(inorm, 1, MPI_INTEGER, root, comm_solve, ierr)
+clear/LU/bcast_inputs.f90:      call MPI_BCAST(itmax, 1, MPI_INTEGER, root, comm_solve, ierr)
+clear/LU/bcast_inputs.f90:      call MPI_BCAST(dt, 1, dp_type, root, comm_solve, ierr)
+clear/LU/bcast_inputs.f90:      call MPI_BCAST(omega, 1, dp_type, root, comm_solve, ierr)
+clear/LU/bcast_inputs.f90:      call MPI_BCAST(tolrsd, 5, dp_type, root, comm_solve, ierr)
+clear/LU/bcast_inputs.f90:      call MPI_BCAST(nx0, 1, MPI_INTEGER, root, comm_solve, ierr)
+clear/LU/bcast_inputs.f90:      call MPI_BCAST(ny0, 1, MPI_INTEGER, root, comm_solve, ierr)
+clear/LU/bcast_inputs.f90:      call MPI_BCAST(nz0, 1, MPI_INTEGER, root, comm_solve, ierr)
+clear/LU/bcast_inputs.f90:      call MPI_BCAST(timeron, 1, MPI_LOGICAL, root, comm_solve,  &
+clear/LU/exchange_6.f90:      integer STATUS(MPI_STATUS_SIZE)
+clear/LU/exchange_6.f90:        call MPI_IRECV( dum,  &
+clear/LU/exchange_6.f90:        call MPI_WAIT( msgid3, STATUS, IERROR )
+clear/LU/exchange_6.f90:        call MPI_SEND( dum,  &
+clear/LU/proc_grid.f90:         CALL MPI_ABORT( MPI_COMM_WORLD, MPI_ERR_OTHER, IERROR )
+clear/LU/proc_grid.f90:         CALL MPI_ABORT( MPI_COMM_WORLD, MPI_ERR_OTHER, IERROR )
+clear/LU/exchange_1.f90:      integer STATUS(MPI_STATUS_SIZE)
+clear/LU/exchange_1.f90:              call MPI_RECV( buf1(1,jst),  &
+clear/LU/exchange_1.f90:              call MPI_RECV( buf1(1,ist),  &
+clear/LU/exchange_1.f90:              call MPI_RECV( buf1(1,jst),  &
+clear/LU/exchange_1.f90:              call MPI_RECV( buf1(1,ist),  &
+clear/LU/exchange_1.f90:              call MPI_SEND( buf(1,jst),  &
+clear/LU/exchange_1.f90:              call MPI_SEND( buf(1,ist),  &
+clear/LU/exchange_1.f90:              call MPI_SEND( buf(1,jst),  &
+clear/LU/exchange_1.f90:              call MPI_SEND( buf(1,ist),  &
+clear/LU/error.f90:      call MPI_ALLREDUCE( dummy,  &
+clear/LU/error.f90:     &                    MPI_SUM,  &
+clear/LU/exchange_5.f90:      integer STATUS(MPI_STATUS_SIZE)
+clear/LU/exchange_5.f90:        call MPI_IRECV( dum,  &
+clear/LU/exchange_5.f90:        call MPI_WAIT( msgid1, STATUS, IERROR )
+clear/LU/exchange_5.f90:        call MPI_SEND( dum,  &
+clear/LU/init_comm.f90:      call MPI_INIT( IERROR )
+clear/LU/init_comm.f90:         dp_type = MPI_DOUBLE_PRECISION
+clear/LU/init_comm.f90:         dp_type = MPI_REAL
+clear/LU/exchange_3.f90:      integer STATUS(MPI_STATUS_SIZE)
+clear/LU/exchange_3.f90:          call MPI_IRECV( buf1,  &
+clear/LU/exchange_3.f90:          call MPI_SEND( buf,  &
+clear/LU/exchange_3.f90:          call MPI_WAIT( mid, STATUS, IERROR )
+clear/LU/exchange_3.f90:          call MPI_IRECV( buf1,  &
+clear/LU/exchange_3.f90:          call MPI_SEND( buf,  &
+clear/LU/exchange_3.f90:          call MPI_WAIT( mid, STATUS, IERROR )
+clear/LU/exchange_3.f90:          call MPI_IRECV( buf1,  &
+clear/LU/exchange_3.f90:          call MPI_SEND( buf,  &
+clear/LU/exchange_3.f90:          call MPI_WAIT( mid, STATUS, IERROR )
+clear/LU/exchange_3.f90:          call MPI_IRECV( buf1,  &
+clear/LU/exchange_3.f90:          call MPI_SEND( buf,  &
+clear/LU/exchange_3.f90:          call MPI_WAIT( mid, STATUS, IERROR )
+clear/LU/ssor_vec.f90:      call MPI_BARRIER( comm_solve, IERROR )
+clear/LU/ssor_vec.f90:      call MPI_ALLREDUCE( wtime,  &
+clear/LU/ssor_vec.f90:     &                    MPI_DOUBLE_PRECISION,  &
+clear/LU/ssor_vec.f90:     &                    MPI_MAX,  &
+clear/LU/l2norm.f90:      call MPI_ALLREDUCE( dummy,  &
+clear/LU/l2norm.f90:     &                    MPI_SUM,  &
+clear/LU/read_input.f90:            CALL MPI_ABORT( MPI_COMM_WORLD, MPI_ERR_OTHER, IERROR )
+clear/LU/read_input.f90:            CALL MPI_ABORT( MPI_COMM_WORLD, MPI_ERR_OTHER, IERROR )
+clear/LU/ssor.f90:      call MPI_BARRIER( comm_solve, IERROR )
+clear/LU/ssor.f90:      call MPI_ALLREDUCE( wtime,  &
+clear/LU/ssor.f90:     &                    MPI_DOUBLE_PRECISION,  &
+clear/LU/ssor.f90:     &                    MPI_MAX,  &
+clear/DT/Makefile:	${CLINK} ${CLINKFLAGS} -o ${DTPROGRAM} ${OBJS} ${CMPI_LIB}
+clear/DT/dt.c:                      char   *cmpi_lib,
+clear/DT/dt.c:                      char   *cmpi_inc,
+clear/DT/dt.c:      MPI_Send(&feat->len,1,MPI_INT,head->address,tag,MPI_COMM_WORLD);
+clear/DT/dt.c:      MPI_Send(feat->val,feat->len,MPI_DOUBLE,head->address,tag,MPI_COMM_WORLD);
+clear/DT/dt.c:  MPI_Status status;
+clear/DT/dt.c:      MPI_Recv(&len,1,MPI_INT,tail->address,tag,MPI_COMM_WORLD,&status);
+clear/DT/dt.c:      MPI_Recv(feat->val,feat->len,MPI_DOUBLE,tail->address,tag,MPI_COMM_WORLD,&status);
+clear/DT/dt.c:      MPI_Status status;
+clear/DT/dt.c:      MPI_Recv(&len,1,MPI_INT,tail->address,tag,MPI_COMM_WORLD,&status);
+clear/DT/dt.c:      MPI_Recv(feat->val,feat->len,MPI_DOUBLE,tail->address,tag,MPI_COMM_WORLD,&status);
+clear/DT/dt.c:  MPI_Status status;
+clear/DT/dt.c:      MPI_Send(&chksum,1,MPI_DOUBLE,0,tag,MPI_COMM_WORLD);
+clear/DT/dt.c:      MPI_Recv(&rchksum,1,MPI_DOUBLE,nd->address,tag,MPI_COMM_WORLD,&status);
+clear/DT/dt.c:    MPI_Init( &argc, &argv );
+clear/DT/dt.c:    MPI_Comm_rank( MPI_COMM_WORLD, &my_rank );
+clear/DT/dt.c:    MPI_Comm_size( MPI_COMM_WORLD, &comm_size );
+clear/DT/dt.c:      MPI_Finalize();
+clear/DT/dt.c:      MPI_Finalize();
+clear/DT/dt.c:        	       CMPI_LIB,
+clear/DT/dt.c:        	       CMPI_INC,
+clear/DT/dt.c:    MPI_Finalize();
+clear/BT/full_mpiio.f90:      integer mstatus(MPI_STATUS_SIZE)
+clear/BT/full_mpiio.f90:       call mpi_bcast(collbuf_nodes, 1, MPI_INTEGER,  &
+clear/BT/full_mpiio.f90:       call mpi_bcast(collbuf_size, 1, MPI_INTEGER,  &
+clear/BT/full_mpiio.f90:          info = MPI_INFO_NULL
+clear/BT/full_mpiio.f90:          call MPI_Info_create(info, ierr)
+clear/BT/full_mpiio.f90:          call MPI_Info_set(info, 'cb_nodes', cb_nodes, ierr)
+clear/BT/full_mpiio.f90:          call MPI_Info_set(info, 'cb_buffer_size', cb_size, ierr)
+clear/BT/full_mpiio.f90:          call MPI_Info_set(info, 'collective_buffering', 'true', ierr)
+clear/BT/full_mpiio.f90:       call MPI_Type_contiguous(5, MPI_DOUBLE_PRECISION,  &
+clear/BT/full_mpiio.f90:       call MPI_Type_commit(element, ierr)
+clear/BT/full_mpiio.f90:       call MPI_Type_extent(element, eltext, ierr)
+clear/BT/full_mpiio.f90:           call MPI_Type_create_subarray(4, sizes, subsizes,  &
+clear/BT/full_mpiio.f90:     &          starts, MPI_ORDER_FORTRAN, element,  &
+clear/BT/full_mpiio.f90:       call MPI_Type_struct(ncells, cell_blength, cell_disp,  &
+clear/BT/full_mpiio.f90:       call MPI_Type_commit(combined_btype, ierr)
+clear/BT/full_mpiio.f90:           call MPI_Type_create_subarray(3, sizes, subsizes,  &
+clear/BT/full_mpiio.f90:     &          starts, MPI_ORDER_FORTRAN,  &
+clear/BT/full_mpiio.f90:       call MPI_Type_struct(ncells, cell_blength, cell_disp,  &
+clear/BT/full_mpiio.f90:       call MPI_Type_commit(combined_ftype, ierr)
+clear/BT/full_mpiio.f90:          call MPI_File_delete(filenm, MPI_INFO_NULL, ierr)
+clear/BT/full_mpiio.f90:      call MPI_Barrier(comm_solve, ierr)
+clear/BT/full_mpiio.f90:       call MPI_File_open(comm_solve,  &
+clear/BT/full_mpiio.f90:     &          MPI_MODE_RDWR+MPI_MODE_CREATE,  &
+clear/BT/full_mpiio.f90:     &          MPI_INFO_NULL, fp, ierr)
+clear/BT/full_mpiio.f90:       if (ierr .ne. MPI_SUCCESS) then
+clear/BT/full_mpiio.f90:        call MPI_File_set_view(fp, iseek, element,  &
+clear/BT/full_mpiio.f90:       if (ierr .ne. MPI_SUCCESS) then
+clear/BT/full_mpiio.f90:      integer mstatus(MPI_STATUS_SIZE)
+clear/BT/full_mpiio.f90:      call MPI_File_write_at_all(fp, iseek, u,  &
+clear/BT/full_mpiio.f90:      if (ierr .ne. MPI_SUCCESS) then
+clear/BT/full_mpiio.f90:      call MPI_Type_size(combined_btype, iosize, ierr)
+clear/BT/full_mpiio.f90:      integer mstatus(MPI_STATUS_SIZE)
+clear/BT/full_mpiio.f90:        call MPI_File_read_at_all(fp, iseek, u,  &
+clear/BT/full_mpiio.f90:        if (ierr .ne. MPI_SUCCESS) then
+clear/BT/full_mpiio.f90:           call MPI_File_close(fp, ierr)
+clear/BT/full_mpiio.f90:        call MPI_Type_size(combined_btype, iosize, ierr)
+clear/BT/full_mpiio.f90:      call MPI_File_close(fp, ierr)
+clear/BT/full_mpiio.f90:      call MPI_File_open(comm_solve,  &
+clear/BT/full_mpiio.f90:     &          MPI_MODE_RDONLY,  &
+clear/BT/full_mpiio.f90:     &          MPI_INFO_NULL,  &
+clear/BT/full_mpiio.f90:      call MPI_File_set_view(fp, iseek, element, combined_ftype,  &
+clear/BT/full_mpiio.f90:     &          'native', MPI_INFO_NULL, ierr)
+clear/BT/full_mpiio.f90:      call MPI_File_close(fp, ierr)
+clear/BT/Makefile:	${FLINK} ${FLINKFLAGS} -o ${PROGRAM} ${OBJS} btio.o ${FMPI_LIB}
+clear/BT/Makefile:	${FLINK} ${FLINKFLAGS} -o ${PROGRAM}.mpi_io_full ${OBJS} btio_common.o full_mpiio.o ${FMPI_LIB}
+clear/BT/Makefile:	${FLINK} ${FLINKFLAGS} -o ${PROGRAM}.mpi_io_simple ${OBJS} btio_common.o simple_mpiio.o ${FMPI_LIB}
+clear/BT/Makefile:	${FLINK} ${FLINKFLAGS} -o ${PROGRAM}.fortran_io ${OBJS} btio_common.o fortran_io.o ${FMPI_LIB}
+clear/BT/Makefile:	${FLINK} ${FLINKFLAGS} -o ${PROGRAM}.ep_io ${OBJS} btio_common.o epio.o ${FMPI_LIB}
+clear/BT/copy_faces.f90:     &     sr(0:5), error, statuses(MPI_STATUS_SIZE, 0:11)
+clear/BT/copy_faces.f90:      call mpi_irecv(in_buffer(sr(0)), b_size(0),  &
+clear/BT/copy_faces.f90:      call mpi_irecv(in_buffer(sr(1)), b_size(1),  &
+clear/BT/copy_faces.f90:      call mpi_irecv(in_buffer(sr(2)), b_size(2),  &
+clear/BT/copy_faces.f90:      call mpi_irecv(in_buffer(sr(3)), b_size(3),  &
+clear/BT/copy_faces.f90:      call mpi_irecv(in_buffer(sr(4)), b_size(4),  &
+clear/BT/copy_faces.f90:      call mpi_irecv(in_buffer(sr(5)), b_size(5),  &
+clear/BT/copy_faces.f90:      call mpi_isend(out_buffer(ss(0)), b_size(0),  &
+clear/BT/copy_faces.f90:      call mpi_isend(out_buffer(ss(1)), b_size(1),  &
+clear/BT/copy_faces.f90:      call mpi_isend(out_buffer(ss(2)), b_size(2),  &
+clear/BT/copy_faces.f90:      call mpi_isend(out_buffer(ss(3)), b_size(3),  &
+clear/BT/copy_faces.f90:      call mpi_isend(out_buffer(ss(4)), b_size(4),  &
+clear/BT/copy_faces.f90:      call mpi_isend(out_buffer(ss(5)), b_size(5),  &
+clear/BT/copy_faces.f90:      call mpi_waitall(12, requests, statuses, error)
+clear/BT/bt.f90:       call mpi_bcast(niter, 1, MPI_INTEGER,  &
+clear/BT/bt.f90:       call mpi_bcast(dt, 1, dp_type,  &
+clear/BT/bt.f90:       call mpi_bcast(grid_points(1), 3, MPI_INTEGER,  &
+clear/BT/bt.f90:       call mpi_bcast(wr_interval, 1, MPI_INTEGER,  &
+clear/BT/bt.f90:       call mpi_bcast(rd_interval, 1, MPI_INTEGER,  &
+clear/BT/bt.f90:       call mpi_bcast(timeron, 1, MPI_LOGICAL,  &
+clear/BT/bt.f90:       call mpi_barrier(comm_setup, error)
+clear/BT/bt.f90:       call mpi_reduce(t, tmax, 1,  &
+clear/BT/bt.f90:     &                 dp_type, MPI_MAX,  &
+clear/BT/bt.f90:          call mpi_reduce(t1, iorate, 2,  &
+clear/BT/bt.f90:     &                    dp_type, MPI_SUM,  &
+clear/BT/bt.f90:       call MPI_Reduce(t1, tsum,  t_last, dp_type, MPI_SUM,  &
+clear/BT/bt.f90:       call MPI_Reduce(t1, tming, t_last, dp_type, MPI_MIN,  &
+clear/BT/bt.f90:       call MPI_Reduce(t1, tmaxg, t_last, dp_type, MPI_MAX,  &
+clear/BT/bt.f90:       call mpi_barrier(MPI_COMM_WORLD, error)
+clear/BT/bt.f90:       call mpi_finalize(error)
+clear/BT/z_solve_vec.f90:     &     first, last, recv_id, error, r_status(MPI_STATUS_SIZE),  &
+clear/BT/z_solve_vec.f90:            call mpi_wait(send_id,r_status,error)
+clear/BT/z_solve_vec.f90:            call mpi_wait(recv_id,r_status,error)
+clear/BT/z_solve_vec.f90:            call mpi_wait(send_id,r_status,error)
+clear/BT/z_solve_vec.f90:            call mpi_wait(recv_id,r_status,error)
+clear/BT/z_solve_vec.f90:      call mpi_isend(in_buffer, buffer_size,  &
+clear/BT/z_solve_vec.f90:      call mpi_isend(in_buffer, buffer_size,  &
+clear/BT/z_solve_vec.f90:      call mpi_irecv(out_buffer, buffer_size,  &
+clear/BT/z_solve_vec.f90:      call mpi_irecv(out_buffer, buffer_size,  &
+clear/BT/error.f90:      call mpi_allreduce(rms_work, rms, 5, dp_type,  &
+clear/BT/error.f90:     &     MPI_SUM, comm_setup, error)
+clear/BT/error.f90:      call mpi_allreduce(rms_work, rms, 5, dp_type,  &
+clear/BT/error.f90:     &     MPI_SUM, comm_setup, error)
+clear/BT/bt_data.f90:         call MPI_Abort(MPI_COMM_WORLD, MPI_ERR_OTHER, ierr)
+clear/BT/x_solve.f90:     &     first, last, recv_id, error, r_status(MPI_STATUS_SIZE),  &
+clear/BT/x_solve.f90:            call mpi_wait(send_id,r_status,error)
+clear/BT/x_solve.f90:            call mpi_wait(recv_id,r_status,error)
+clear/BT/x_solve.f90:            call mpi_wait(send_id,r_status,error)
+clear/BT/x_solve.f90:            call mpi_wait(recv_id,r_status,error)
+clear/BT/x_solve.f90:      call mpi_isend(in_buffer, buffer_size,  &
+clear/BT/x_solve.f90:      call mpi_isend(in_buffer, buffer_size,  &
+clear/BT/x_solve.f90:      call mpi_irecv(out_buffer, buffer_size,  &
+clear/BT/x_solve.f90:      call mpi_irecv(out_buffer, buffer_size,  &
+clear/BT/y_solve_vec.f90:     &     first, last, recv_id, error, r_status(MPI_STATUS_SIZE),  &
+clear/BT/y_solve_vec.f90:            call mpi_wait(send_id,r_status,error)
+clear/BT/y_solve_vec.f90:            call mpi_wait(recv_id,r_status,error)
+clear/BT/y_solve_vec.f90:            call mpi_wait(send_id,r_status,error)
+clear/BT/y_solve_vec.f90:            call mpi_wait(recv_id,r_status,error)
+clear/BT/y_solve_vec.f90:      call mpi_isend(in_buffer, buffer_size,  &
+clear/BT/y_solve_vec.f90:      call mpi_isend(in_buffer, buffer_size,  &
+clear/BT/y_solve_vec.f90:      call mpi_irecv(out_buffer, buffer_size,  &
+clear/BT/y_solve_vec.f90:      call mpi_irecv(out_buffer, buffer_size,  &
+clear/BT/bt_data_vec.f90:         call MPI_Abort(MPI_COMM_WORLD, MPI_ERR_OTHER, ierr)
+clear/BT/simple_mpiio.f90:          call MPI_File_delete(filenm, MPI_INFO_NULL, ierr)
+clear/BT/simple_mpiio.f90:      call MPI_Barrier(comm_solve, ierr)
+clear/BT/simple_mpiio.f90:      call MPI_File_open(comm_solve,  &
+clear/BT/simple_mpiio.f90:     &          MPI_MODE_RDWR + MPI_MODE_CREATE,  &
+clear/BT/simple_mpiio.f90:     &          MPI_INFO_NULL,  &
+clear/BT/simple_mpiio.f90:      call MPI_File_set_view(fp,  &
+clear/BT/simple_mpiio.f90:     &          iseek, MPI_DOUBLE_PRECISION, MPI_DOUBLE_PRECISION,  &
+clear/BT/simple_mpiio.f90:     &          'native', MPI_INFO_NULL, ierr)
+clear/BT/simple_mpiio.f90:      if (ierr .ne. MPI_SUCCESS) then
+clear/BT/simple_mpiio.f90:      integer mstatus(MPI_STATUS_SIZE)
+clear/BT/simple_mpiio.f90:                  call MPI_File_write_at(fp, iseek,  &
+clear/BT/simple_mpiio.f90:     &                  count, MPI_DOUBLE_PRECISION,  &
+clear/BT/simple_mpiio.f90:                  if (ierr .ne. MPI_SUCCESS) then
+clear/BT/simple_mpiio.f90:      integer mstatus(MPI_STATUS_SIZE)
+clear/BT/simple_mpiio.f90:                  call MPI_File_read_at(fp, iseek,  &
+clear/BT/simple_mpiio.f90:     &                  count, MPI_DOUBLE_PRECISION,  &
+clear/BT/simple_mpiio.f90:                  if (ierr .ne. MPI_SUCCESS) then
+clear/BT/simple_mpiio.f90:                      call MPI_File_close(fp, ierr)
+clear/BT/simple_mpiio.f90:      call MPI_File_close(fp, ierr)
+clear/BT/simple_mpiio.f90:      call MPI_File_open(comm_solve,  &
+clear/BT/simple_mpiio.f90:     &          MPI_MODE_RDONLY,  &
+clear/BT/simple_mpiio.f90:     &          MPI_INFO_NULL,  &
+clear/BT/simple_mpiio.f90:      call MPI_File_set_view(fp,  &
+clear/BT/simple_mpiio.f90:     &          iseek, MPI_DOUBLE_PRECISION, MPI_DOUBLE_PRECISION,  &
+clear/BT/simple_mpiio.f90:     &          'native', MPI_INFO_NULL, ierr)
+clear/BT/simple_mpiio.f90:      call MPI_File_close(fp, ierr)
+clear/BT/y_solve.f90:     &     first, last, recv_id, error, r_status(MPI_STATUS_SIZE),  &
+clear/BT/y_solve.f90:            call mpi_wait(send_id,r_status,error)
+clear/BT/y_solve.f90:            call mpi_wait(recv_id,r_status,error)
+clear/BT/y_solve.f90:            call mpi_wait(send_id,r_status,error)
+clear/BT/y_solve.f90:            call mpi_wait(recv_id,r_status,error)
+clear/BT/y_solve.f90:      call mpi_isend(in_buffer, buffer_size,  &
+clear/BT/y_solve.f90:      call mpi_isend(in_buffer, buffer_size,  &
+clear/BT/y_solve.f90:      call mpi_irecv(out_buffer, buffer_size,  &
+clear/BT/y_solve.f90:      call mpi_irecv(out_buffer, buffer_size,  &
+clear/BT/z_solve.f90:     &     first, last, recv_id, error, r_status(MPI_STATUS_SIZE),  &
+clear/BT/z_solve.f90:            call mpi_wait(send_id,r_status,error)
+clear/BT/z_solve.f90:            call mpi_wait(recv_id,r_status,error)
+clear/BT/z_solve.f90:            call mpi_wait(send_id,r_status,error)
+clear/BT/z_solve.f90:            call mpi_wait(recv_id,r_status,error)
+clear/BT/z_solve.f90:      call mpi_isend(in_buffer, buffer_size,  &
+clear/BT/z_solve.f90:      call mpi_isend(in_buffer, buffer_size,  &
+clear/BT/z_solve.f90:      call mpi_irecv(out_buffer, buffer_size,  &
+clear/BT/z_solve.f90:      call mpi_irecv(out_buffer, buffer_size,  &
+clear/BT/fortran_io.f90:      call mpi_bcast(record_length, 1, MPI_INTEGER,  &
+clear/BT/setup_mpi.f90:      call mpi_init(error)
+clear/BT/setup_mpi.f90:         dp_type = MPI_DOUBLE_PRECISION
+clear/BT/setup_mpi.f90:         dp_type = MPI_REAL
+clear/BT/setup_mpi.f90:      call mpi_comm_dup(comm_setup, comm_solve, error)
+clear/BT/setup_mpi.f90:      call mpi_comm_dup(comm_setup, comm_rhs, error)
+clear/BT/x_solve_vec.f90:     &     first, last, recv_id, error, r_status(MPI_STATUS_SIZE),  &
+clear/BT/x_solve_vec.f90:            call mpi_wait(send_id,r_status,error)
+clear/BT/x_solve_vec.f90:            call mpi_wait(recv_id,r_status,error)
+clear/BT/x_solve_vec.f90:            call mpi_wait(send_id,r_status,error)
+clear/BT/x_solve_vec.f90:            call mpi_wait(recv_id,r_status,error)
+clear/BT/x_solve_vec.f90:      call mpi_isend(in_buffer, buffer_size,  &
+clear/BT/x_solve_vec.f90:      call mpi_isend(in_buffer, buffer_size,  &
+clear/BT/x_solve_vec.f90:      call mpi_irecv(out_buffer, buffer_size,  &
+clear/BT/x_solve_vec.f90:      call mpi_irecv(out_buffer, buffer_size,  &
+clear/BT/make_set.f90:               call MPI_Abort(mpi_comm_world,ierrcode,ierr)
+clear/SP/Makefile:	${FLINK} ${FLINKFLAGS} -o ${PROGRAM} ${OBJS} ${FMPI_LIB}
+clear/SP/copy_faces.f90:     &         sr(0:5), error, statuses(MPI_STATUS_SIZE, 0:11)
+clear/SP/copy_faces.f90:       call mpi_irecv(in_buffer(sr(0)), b_size(0),  &
+clear/SP/copy_faces.f90:       call mpi_irecv(in_buffer(sr(1)), b_size(1),  &
+clear/SP/copy_faces.f90:       call mpi_irecv(in_buffer(sr(2)), b_size(2),  &
+clear/SP/copy_faces.f90:       call mpi_irecv(in_buffer(sr(3)), b_size(3),  &
+clear/SP/copy_faces.f90:       call mpi_irecv(in_buffer(sr(4)), b_size(4),  &
+clear/SP/copy_faces.f90:       call mpi_irecv(in_buffer(sr(5)), b_size(5),  &
+clear/SP/copy_faces.f90:       call mpi_isend(out_buffer(ss(0)), b_size(0),  &
+clear/SP/copy_faces.f90:       call mpi_isend(out_buffer(ss(1)), b_size(1),  &
+clear/SP/copy_faces.f90:       call mpi_isend(out_buffer(ss(2)), b_size(2),  &
+clear/SP/copy_faces.f90:       call mpi_isend(out_buffer(ss(3)), b_size(3),  &
+clear/SP/copy_faces.f90:       call mpi_isend(out_buffer(ss(4)), b_size(4),  &
+clear/SP/copy_faces.f90:       call mpi_isend(out_buffer(ss(5)), b_size(5),  &
+clear/SP/copy_faces.f90:       call mpi_waitall(12, requests, statuses, error)
+clear/SP/error.f90:       call mpi_allreduce(rms_work, rms, 5, dp_type,  &
+clear/SP/error.f90:     &                 MPI_SUM, comm_setup, error)
+clear/SP/error.f90:       call mpi_allreduce(rms_work, rms, 5, dp_type,  &
+clear/SP/error.f90:     &                 MPI_SUM, comm_setup, error)
+clear/SP/x_solve.f90:     &         requests(2), statuses(MPI_STATUS_SIZE, 2)
+clear/SP/x_solve.f90:             call mpi_irecv(in_buffer, 22*buffer_size,  &
+clear/SP/x_solve.f90:             call mpi_waitall(2, requests, statuses, error)
+clear/SP/x_solve.f90:             call mpi_isend(out_buffer, 22*buffer_size,  &
+clear/SP/x_solve.f90:             call mpi_irecv(in_buffer, 10*buffer_size,  &
+clear/SP/x_solve.f90:             call mpi_waitall(2, requests, statuses, error)
+clear/SP/x_solve.f90:             call mpi_isend(out_buffer, 10*buffer_size,  &
+clear/SP/y_solve.f90:     &         requests(2), statuses(MPI_STATUS_SIZE, 2)
+clear/SP/y_solve.f90:             call mpi_irecv(in_buffer, 22*buffer_size,  &
+clear/SP/y_solve.f90:             call mpi_waitall(2, requests, statuses, error)
+clear/SP/y_solve.f90:             call mpi_isend(out_buffer, 22*buffer_size,  &
+clear/SP/y_solve.f90:             call mpi_irecv(in_buffer, 10*buffer_size,  &
+clear/SP/y_solve.f90:             call mpi_waitall(2, requests, statuses, error)
+clear/SP/y_solve.f90:             call mpi_isend(out_buffer, 10*buffer_size,  &
+clear/SP/z_solve.f90:     &         requests(2), statuses(MPI_STATUS_SIZE, 2)
+clear/SP/z_solve.f90:             call mpi_irecv(in_buffer, 22*buffer_size,  &
+clear/SP/z_solve.f90:             call mpi_waitall(2, requests, statuses, error)
+clear/SP/z_solve.f90:             call mpi_isend(out_buffer, 22*buffer_size,  &
+clear/SP/z_solve.f90:             call mpi_irecv(in_buffer, 10*buffer_size,  &
+clear/SP/z_solve.f90:             call mpi_waitall(2, requests, statuses, error)
+clear/SP/z_solve.f90:             call mpi_isend(out_buffer, 10*buffer_size,  &
+clear/SP/sp_data.f90:         call MPI_Abort(MPI_COMM_WORLD, MPI_ERR_OTHER, ierr)
+clear/SP/setup_mpi.f90:      call mpi_init(error)
+clear/SP/setup_mpi.f90:         dp_type = MPI_DOUBLE_PRECISION
+clear/SP/setup_mpi.f90:         dp_type = MPI_REAL
+clear/SP/setup_mpi.f90:      call mpi_comm_dup(comm_setup, comm_solve, error)
+clear/SP/setup_mpi.f90:      call mpi_comm_dup(comm_setup, comm_rhs, error)
+clear/SP/make_set.f90:                call MPI_Abort(mpi_comm_world,ierrcode,ierr)
+clear/SP/sp.f90:       call mpi_bcast(niter, 1, MPI_INTEGER,  &
+clear/SP/sp.f90:       call mpi_bcast(dt, 1, dp_type,  &
+clear/SP/sp.f90:       call mpi_bcast(grid_points(1), 3, MPI_INTEGER,  &
+clear/SP/sp.f90:       call mpi_bcast(timeron, 1, MPI_LOGICAL,  &
+clear/SP/sp.f90:       call mpi_barrier(comm_setup, error)
+clear/SP/sp.f90:       call mpi_reduce(t, tmax, 1,  &
+clear/SP/sp.f90:     &                 dp_type, MPI_MAX,  &
+clear/SP/sp.f90:       call MPI_Reduce(t1, tsum,  t_last+2, dp_type, MPI_SUM,  &
+clear/SP/sp.f90:       call MPI_Reduce(t1, tming, t_last+2, dp_type, MPI_MIN,  &
+clear/SP/sp.f90:       call MPI_Reduce(t1, tmaxg, t_last+2, dp_type, MPI_MAX,  &
+clear/SP/sp.f90:       call mpi_barrier(MPI_COMM_WORLD, error)
+clear/SP/sp.f90:       call mpi_finalize(error)
+clear/CG/Makefile:	${FLINK} ${FLINKFLAGS} -o ${PROGRAM} ${OBJS} ${FMPI_LIB}
+clear/CG/cg.f90:      integer status(MPI_STATUS_SIZE), request, ierr
+clear/CG/cg.f90:            call mpi_irecv( norm_temp2,  &
+clear/CG/cg.f90:            call mpi_send(  norm_temp1,  &
+clear/CG/cg.f90:            call mpi_wait( request, status, ierr )
+clear/CG/cg.f90:      call mpi_barrier( comm_solve, ierr )
+clear/CG/cg.f90:            call mpi_irecv( norm_temp2,  &
+clear/CG/cg.f90:            call mpi_send(  norm_temp1,  &
+clear/CG/cg.f90:            call mpi_wait( request, status, ierr )
+clear/CG/cg.f90:      call mpi_reduce( t,  &
+clear/CG/cg.f90:     &                 MPI_MAX,  &
+clear/CG/cg.f90:      call MPI_Reduce(t1, tsum,  t_last+2, dp_type, MPI_SUM,  &
+clear/CG/cg.f90:      call MPI_Reduce(t1, tming, t_last+2, dp_type, MPI_MIN,  &
+clear/CG/cg.f90:      call MPI_Reduce(t1, tmaxg, t_last+2, dp_type, MPI_MAX,  &
+clear/CG/cg.f90:      call mpi_finalize(ierr)
+clear/CG/cg.f90:      call mpi_init( ierr )
+clear/CG/cg.f90:         dp_type = MPI_DOUBLE_PRECISION
+clear/CG/cg.f90:         dp_type = MPI_REAL
+clear/CG/cg.f90:      call mpi_bcast(timeron, 1, MPI_LOGICAL, 0, comm_solve, ierr)
+clear/CG/cg.f90:          call mpi_abort(mpi_comm_world, mpi_err_other, ierr)
+clear/CG/cg.f90:      integer status(MPI_STATUS_SIZE ), request
+clear/CG/cg.f90:!  (This is equivalent to mpi_allreduce.)
+clear/CG/cg.f90:         call mpi_irecv( rho,  &
+clear/CG/cg.f90:         call mpi_send(  sum,  &
+clear/CG/cg.f90:         call mpi_wait( request, status, ierr )
+clear/CG/cg.f90:            call mpi_irecv( q(reduce_recv_starts(i)),  &
+clear/CG/cg.f90:            call mpi_send(  w(reduce_send_starts(i)),  &
+clear/CG/cg.f90:            call mpi_wait( request, status, ierr )
+clear/CG/cg.f90:            call mpi_irecv( q,               &
+clear/CG/cg.f90:            call mpi_send(  w(send_start),   &
+clear/CG/cg.f90:            call mpi_wait( request, status, ierr )
+clear/CG/cg.f90:            call mpi_irecv( d,  &
+clear/CG/cg.f90:            call mpi_send(  sum,  &
+clear/CG/cg.f90:            call mpi_wait( request, status, ierr )
+clear/CG/cg.f90:            call mpi_irecv( rho,  &
+clear/CG/cg.f90:            call mpi_send(  sum,  &
+clear/CG/cg.f90:            call mpi_wait( request, status, ierr )
+clear/CG/cg.f90:         call mpi_irecv( r(reduce_recv_starts(i)),  &
+clear/CG/cg.f90:         call mpi_send(  w(reduce_send_starts(i)),  &
+clear/CG/cg.f90:         call mpi_wait( request, status, ierr )
+clear/CG/cg.f90:         call mpi_irecv( r,               &
+clear/CG/cg.f90:         call mpi_send(  w(send_start),   &
+clear/CG/cg.f90:         call mpi_wait( request, status, ierr )
+clear/CG/cg.f90:         call mpi_irecv( d,  &
+clear/CG/cg.f90:         call mpi_send(  sum,  &
+clear/CG/cg.f90:         call mpi_wait( request, status, ierr )
+clear/CG/cg_data.f90:         call MPI_Abort(MPI_COMM_WORLD, MPI_ERR_OTHER, ierr)
+clear/CG/cg_data.f90:         call MPI_Abort(MPI_COMM_WORLD, MPI_ERR_OTHER, ierr)
+clear/IS/Makefile:	${CLINK} ${CLINKFLAGS} -o ${PROGRAM} ${OBJS} ${CMPI_LIB}
+clear/IS/is.c:#define MP_KEY_TYPE MPI_INT
+clear/IS/is.c:MPI_Comm comm_work;
+clear/IS/is.c:                      char   *cmpi_lib,
+clear/IS/is.c:                      char   *cmpi_inc,
+clear/IS/is.c:      MPI_Abort(MPI_COMM_WORLD, 1);
+clear/IS/is.c:    MPI_Status  status;
+clear/IS/is.c:    MPI_Request request;
+clear/IS/is.c:        MPI_Irecv( &k,
+clear/IS/is.c:        MPI_Send( &key_array[last_local_key],
+clear/IS/is.c:        MPI_Wait( &request, &status );
+clear/IS/is.c:    MPI_Allreduce( bucket_size, 
+clear/IS/is.c:                   MPI_SUM,
+clear/IS/is.c:    MPI_Alltoall( send_count,
+clear/IS/is.c:                  MPI_INT,
+clear/IS/is.c:                  MPI_INT,
+clear/IS/is.c:    MPI_Alltoallv( key_buff1,
+clear/IS/is.c:    MPI_Init( &argc, &argv );
+clear/IS/is.c:    MPI_Comm_rank( MPI_COMM_WORLD, &my_rank );
+clear/IS/is.c:    MPI_Comm_size( MPI_COMM_WORLD, &np_total );
+clear/IS/is.c:       MPI_Finalize();
+clear/IS/is.c:        MPI_Bcast(&active, 1, MPI_INT, 0, MPI_COMM_WORLD);
+clear/IS/is.c:            MPI_Abort(MPI_COMM_WORLD, MPI_ERR_OTHER);
+clear/IS/is.c:        MPI_Comm_split(MPI_COMM_WORLD, active, my_rank, &comm_work);
+clear/IS/is.c:        MPI_Comm_dup(MPI_COMM_WORLD, &comm_work);
+clear/IS/is.c:        MPI_Finalize();
+clear/IS/is.c:    MPI_Bcast(&timeron, 1, MPI_INT, 0, comm_work);
+clear/IS/is.c:    MPI_Reduce( &timecounter,
+clear/IS/is.c:                MPI_DOUBLE,
+clear/IS/is.c:                MPI_MAX,
+clear/IS/is.c:    MPI_Reduce( &itemp,
+clear/IS/is.c:                MPI_INT,
+clear/IS/is.c:                MPI_SUM,
+clear/IS/is.c:                         CMPI_LIB,
+clear/IS/is.c:                         CMPI_INC,
+clear/IS/is.c:        MPI_Reduce( t1,
+clear/IS/is.c:                    MPI_DOUBLE,
+clear/IS/is.c:                    MPI_MIN,
+clear/IS/is.c:        MPI_Reduce( t1,
+clear/IS/is.c:                    MPI_DOUBLE,
+clear/IS/is.c:                    MPI_SUM,
+clear/IS/is.c:        MPI_Reduce( t1,
+clear/IS/is.c:                    MPI_DOUBLE,
+clear/IS/is.c:                    MPI_MAX,
+clear/IS/is.c:    MPI_Finalize();
+clear/EP/Makefile:	${FLINK} ${FLINKFLAGS} -o ${PROGRAM} ${OBJS} ${FMPI_LIB}
+clear/EP/ep.f90:      call mpi_init(ierr)
+clear/EP/ep.f90:      comm_solve = MPI_COMM_WORLD
+clear/EP/ep.f90:      call mpi_comm_rank(comm_solve,node,ierr)
+clear/EP/ep.f90:      call mpi_comm_size(comm_solve,no_nodes,ierr)
+clear/EP/ep.f90:         dp_type = MPI_DOUBLE_PRECISION
+clear/EP/ep.f90:         dp_type = MPI_REAL
+clear/EP/ep.f90:      call mpi_bcast(timers_enabled, 1, MPI_LOGICAL, root,  &
+clear/EP/ep.f90:         call mpi_abort(MPI_COMM_WORLD,ierrcode,ierr)
+clear/EP/ep.f90:      call mpi_barrier(comm_solve, ierr)
+clear/EP/ep.f90:      call mpi_allreduce(sx, x, 1, dp_type,  &
+clear/EP/ep.f90:     &                   MPI_SUM, comm_solve, ierr)
+clear/EP/ep.f90:      call mpi_allreduce(sy, x, 1, dp_type,  &
+clear/EP/ep.f90:     &                   MPI_SUM, comm_solve, ierr)
+clear/EP/ep.f90:      call mpi_allreduce(q, x, nq, dp_type,  &
+clear/EP/ep.f90:     &                   MPI_SUM, comm_solve, ierr)
+clear/EP/ep.f90:      call mpi_allreduce(tm, x, 1, dp_type,  &
+clear/EP/ep.f90:     &                   MPI_MAX, comm_solve, ierr)
+clear/EP/ep.f90:      call MPI_Reduce(t1m, tsum,  t_last+2, dp_type, MPI_SUM,  &
+clear/EP/ep.f90:      call MPI_Reduce(t1m, tming, t_last+2, dp_type, MPI_MIN,  &
+clear/EP/ep.f90:      call MPI_Reduce(t1m, tmaxg, t_last+2, dp_type, MPI_MAX,  &
+clear/EP/ep.f90:      call mpi_finalize(ierr)
+clear/FT/Makefile:	${FLINK} ${FLINKFLAGS} -o ${PROGRAM} ${OBJS} ${FMPI_LIB}
+clear/FT/ft.f90:      call MPI_Barrier(comm_solve, ierr)
+clear/FT/ft.f90:      call MPI_Finalize(ierr)
+clear/FT/ft.f90:      call MPI_Init(ierr)
+clear/FT/ft.f90:         dc_type = MPI_DOUBLE_COMPLEX
+clear/FT/ft.f90:         dc_type = MPI_COMPLEX
+clear/FT/ft.f90:               call MPI_Abort(MPI_COMM_WORLD, 1, ierr)
+clear/FT/ft.f90:               call MPI_Abort(MPI_COMM_WORLD, 1, ierr)
+clear/FT/ft.f90:               call MPI_Abort(MPI_COMM_WORLD, 1, ierr)
+clear/FT/ft.f90:               call MPI_Abort(MPI_COMM_WORLD, 1, ierr)
+clear/FT/ft.f90:      call MPI_BCAST(np1, 1, MPI_INTEGER, 0, comm_solve, ierr)
+clear/FT/ft.f90:      call MPI_BCAST(np2, 1, MPI_INTEGER, 0, comm_solve, ierr)
+clear/FT/ft.f90:      call MPI_BCAST(layout_type, 1, MPI_INTEGER, 0, comm_solve,  &
+clear/FT/ft.f90:      call MPI_BCAST(niter, 1, MPI_INTEGER, 0, comm_solve, ierr)
+clear/FT/ft.f90:      call MPI_BCAST(timers_enabled, 1, MPI_LOGICAL, 0, comm_solve,  &
+clear/FT/ft.f90:! mpi_comm_split(comm, color, key, ...)
+clear/FT/ft.f90:      call MPI_Comm_split(comm_solve, me1, me2, commslice1, ierr)
+clear/FT/ft.f90:      call MPI_Comm_split(comm_solve, me2, me1, commslice2, ierr)
+clear/FT/ft.f90:      call MPI_Reduce(t1, tsum,  t_max+2, MPI_DOUBLE_PRECISION,  &
+clear/FT/ft.f90:     &                MPI_SUM, 0, comm_solve, ierr)
+clear/FT/ft.f90:      call MPI_Reduce(t1, tming, t_max+2, MPI_DOUBLE_PRECISION,  &
+clear/FT/ft.f90:     &                MPI_MIN, 0, comm_solve, ierr)
+clear/FT/ft.f90:      call MPI_Reduce(t1, tmaxg, t_max+2, MPI_DOUBLE_PRECISION,  &
+clear/FT/ft.f90:     &                MPI_MAX, 0, comm_solve, ierr)
+clear/FT/ft.f90:      call mpi_alltoall(xin, ntdivnp/np_min, dc_type,  &
+clear/FT/ft.f90:      call mpi_alltoall(xin, d1*d2*d3/np2, dc_type,  &
+clear/FT/ft.f90:      call mpi_alltoall(xin, d1*d2*d3/np1, dc_type,  &
+clear/FT/ft.f90:      call MPI_Reduce(chk, allchk, 1, dc_type, MPI_SUM,  &
+clear/FT/ft.f90:      call mpi_barrier(comm_solve, ierr)
+clear/FT/ft.f90:!      call MPI_COMM_SIZE(comm_solve, size, ierr)
+clear/FT/ft_data.f90:         call MPI_Abort(MPI_COMM_WORLD, MPI_ERR_OTHER, ierr)
